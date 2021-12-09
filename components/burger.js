@@ -1,7 +1,9 @@
 import * as THREE from "../dependencies/three.module.js";
 import {GLTFLoader} from "../dependencies/GLTFLoader.js";
 import gsap from "../dependencies/gsap/index.js";
-import { boxBurger } from "../hitboxes.js";
+
+export let burgerMixer = null;
+let walk = null;
 
 export class Burger extends THREE.Group{
     constructor(manager){
@@ -11,6 +13,7 @@ export class Burger extends THREE.Group{
         this.onCreate();
         this.isActive = false;
         this.smashed = false;
+        this.points = 10;
     }
     onCreate(){
         new GLTFLoader(this.manager).load(
@@ -18,12 +21,16 @@ export class Burger extends THREE.Group{
             gltf=>{
                 this.updateTransform();
                 this.add(gltf.scene);
+                burgerMixer = new THREE.AnimationMixer(gltf.scene);
+                console.log(gltf.animations[0])
+                walk = burgerMixer.clipAction(gltf.animations[0]);
+                walk.play()
             });
     }
     updateTransform(){
         this.name = "burger";
         this.position.set(1.1,0,-.8); 
-        this.scale.set(.3,.3,.3);
+        this.scale.set(.6,.6,.6);
     }
     animate(){
         const timeline = gsap.timeline({ease:'linear'});

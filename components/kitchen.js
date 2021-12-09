@@ -38,6 +38,7 @@ export class Kitchen{
         this.onCreate();
         this.loadSfx();
         this.rightPlayed = false;
+        this.isIronEmpty = true;
     }
     onCreate(){
         new GLTFLoader(this.manager).load(

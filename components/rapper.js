@@ -2,6 +2,9 @@ import * as THREE from "../dependencies/three.module.js";
 import {GLTFLoader} from "../dependencies/GLTFLoader.js";
 import gsap from "../dependencies/gsap/index.js";
 
+export let rapperMixer = null;
+let walk = null;
+
 export class Rapper extends THREE.Group{
     constructor(manager){
         super();
@@ -10,6 +13,7 @@ export class Rapper extends THREE.Group{
         this.onCreate();
         this.isActive = false;
         this.smashed = false;
+        this.points = 40;
     }
     onCreate(){
         new GLTFLoader(this.manager).load(
@@ -17,12 +21,16 @@ export class Rapper extends THREE.Group{
             gltf=>{
                 this.updateTransform();
                 this.add(gltf.scene);
+                rapperMixer = new THREE.AnimationMixer(gltf.scene);
+                console.log(gltf.animations[0])
+                walk = rapperMixer.clipAction(gltf.animations[0]);
+                walk.play()
             });
     }
     updateTransform(){
         this.name = "rapper";
         this.position.set(1.25,0,-.8); 
-        this.scale.set(.3,.3,.3);
+        this.scale.set(.6,.6,.6);
     }
     animate(){
         const timeline = gsap.timeline({ease:'linear'});

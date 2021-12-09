@@ -2,6 +2,9 @@ import * as THREE from "../dependencies/three.module.js";
 import {GLTFLoader} from "../dependencies/GLTFLoader.js";
 import gsap from "../dependencies/gsap/index.js";
 
+export let gamerMixer = null;
+let walk = null;
+
 export class Gamer extends THREE.Group{
     constructor(manager){
         super();
@@ -10,6 +13,7 @@ export class Gamer extends THREE.Group{
         this.onCreate();
         this.isActive = false;
         this.smashed = false;
+        this.points = 60;
     }
     onCreate(){
         new GLTFLoader(this.manager).load(
@@ -17,12 +21,15 @@ export class Gamer extends THREE.Group{
             gltf=>{
                 this.updateTransform();
                 this.add(gltf.scene);
+                gamerMixer = new THREE.AnimationMixer(gltf.scene);
+                walk = gamerMixer.clipAction(gltf.animations[0]);
+                walk.play()
             });
     }
     updateTransform(){
         this.name = "gamer";
         this.position.set(1.3,0,-.8); 
-        this.scale.set(.3,.3,.3);
+        this.scale.set(.6,.6,.6);
     }
     animate(){
         const timeline = gsap.timeline({ease:'linear'});

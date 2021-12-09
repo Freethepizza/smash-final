@@ -10,6 +10,7 @@ export class Skater extends THREE.Group{
         this.isActive = false;
         this.onCreate();
         this.smashed = false;
+        this.points = 100;
     }
     onCreate(){
         new GLTFLoader(this.manager).load(
@@ -22,7 +23,7 @@ export class Skater extends THREE.Group{
     updateTransform(){
         this.name = "skater";
         this.position.set(1.4,0,-.8); 
-        this.scale.set(.3,.3,.3);
+        this.scale.set(.6,.6,.6);
     }
     animate(){
         const timeline = gsap.timeline({ease:'linear'});

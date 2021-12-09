@@ -1,10 +1,10 @@
 import * as THREE from "./dependencies/three.module.js";
 import {OrbitControls} from "./dependencies/OrbitControls.js";
 import { Kitchen,mixer } from "./components/kitchen.js";
-import { Burger } from "./components/burger.js";
-import { Rapper } from "./components/rapper.js";
-import { Gamer } from "./components/gamer.js";
-import { Muppie } from "./components/muppie.js";
+import { Burger, burgerMixer } from "./components/burger.js";
+import { Rapper, rapperMixer } from "./components/rapper.js";
+import { Gamer, gamerMixer } from "./components/gamer.js";
+import { Muppie, muppieMixer } from "./components/muppie.js";
 import { Skater } from "./components/skater.js";
 import { Chef } from "./components/chef.js";
 import { Game } from "./game.js";
@@ -100,9 +100,47 @@ const tick = function() {
     const deltaTime = elapsedTime - previousTime;
     previousTime = elapsedTime;
 
+    if(!boxSmash.intersectsBox(boxBurger) && !boxSmash.intersectsBox(boxRapper) && 
+    !boxSmash.intersectsBox(boxMuppie) &&  !boxSmash.intersectsBox(boxGamer) &&
+    !boxSmash.intersectsBox(boxSkater)){
+        kitchen.isIronEmpty = true;
+    }else{
+        if(boxSmash.intersectsBox(boxBurger)){
+            kitchen.isIronEmpty = false;
+        }
+        else if(boxSmash.intersectsBox(boxRapper)){
+            kitchen.isIronEmpty = false;
+        }
+        else if(boxSmash.intersectsBox(boxMuppie)){
+            kitchen.isIronEmpty = false;
+        }
+        else if(boxSmash.intersectsBox(boxGamer)){
+            kitchen.isIronEmpty = false;
+        }
+        else if(boxSmash.intersectsBox(boxSkater)){
+            kitchen.isIronEmpty = false;
+        }
+    }
+
+    //console.log('is iron empty? ', kitchen.isIronEmpty)
+
+    //MIXERS UPDATERS
     if(mixer!==null){
         mixer.update(delta*2.25)
     }
+    if(burgerMixer!==null){
+        burgerMixer.update(delta)
+    }
+    if(rapperMixer!==null){
+        rapperMixer.update(delta*1.3)
+    }
+    if(muppieMixer!==null){
+        muppieMixer.update(delta)
+    }
+    if(gamerMixer!==null){
+        gamerMixer.update(delta)
+    }
+    
     
     if(boxBurger.intersectsBox(boxRight)){
         burger.isActive = true;
@@ -135,7 +173,7 @@ document.querySelector('.smash').addEventListener('click', ()=>{
     kitchen.play()
     if(burger.isActive && boxBurger.intersectsBox(boxSmash)){
         console.log('burger hit!!!');
-        game.score+=50;
+        game.score+=burger.points;
         burger.smashed=true;
     }else if(burger.isActive && !boxBurger.intersectsBox(boxSmash)){
         console.log('burger no hit!!!');
@@ -147,7 +185,7 @@ document.querySelector('.smash').addEventListener('click', ()=>{
 
     if(rapper.isActive && boxRapper.intersectsBox(boxSmash)){
         console.log('rapper hit!!!');
-        game.score+=200;
+        game.score+=rapper.points;
         rapper.smashed=true;
     }else if(rapper.isActive && !boxRapper.intersectsBox(boxSmash)){
         console.log('rapper no hit!!!')
@@ -159,7 +197,7 @@ document.querySelector('.smash').addEventListener('click', ()=>{
 
     if(muppie.isActive && boxMuppie.intersectsBox(boxSmash)){
         console.log('muppie hit!!!');
-        game.score+=100;
+        game.score+=muppie.points;
         muppie.smashed = true;
     }else if(muppie.isActive && !boxMuppie.intersectsBox(boxSmash)){
         console.log('muppie no hit!!!')
@@ -171,7 +209,7 @@ document.querySelector('.smash').addEventListener('click', ()=>{
 
     if(gamer.isActive && boxGamer.intersectsBox(boxSmash)){
         console.log('gamer hit!!!');
-        game.score+=100;
+        game.score+=gamer.points;
         gamer.smashed=true;
     }else if(gamer.isActive && !boxGamer.intersectsBox(boxSmash)){
         console.log('gamer no hit!!!')
@@ -183,7 +221,7 @@ document.querySelector('.smash').addEventListener('click', ()=>{
 
     if(skater.isActive && boxSkater.intersectsBox(boxSmash)){
         console.log('skater hit!!!');
-        game.score+=400;
+        game.score+=skater.points;
         skater.smashed=true;
     }else if(skater.isActive && !boxSkater.intersectsBox(boxSmash)){
         console.log('skater no hit!!!')
