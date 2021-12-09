@@ -7,7 +7,7 @@ import { Gamer, gamerMixer } from "./components/gamer.js";
 import { Muppie, muppieMixer } from "./components/muppie.js";
 import { Skater, skaterMixer } from "./components/skater.js";
 import { Chef } from "./components/chef.js";
-import { Game } from "./game.js";
+import { Game, SpriteLoad } from "./game.js";
 import { collisionUpdater, helperStart, helperEnd, helperSmash, helperLeft, helperRight, helperBurger,helperRapper,helperMuppie,helperGamer,helperSkater,boxBurger,boxRapper,boxMuppie,boxGamer,boxSkater,boxRight,boxLeft,boxSmash } from "./hitboxes.js";
 //Scene
 const scene = new THREE.Scene();
@@ -18,7 +18,7 @@ manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
 };
 manager.onLoad = function ( ) {
 	console.log( 'Loading complete!');
-    scene.add(burger,rapper,gamer,muppie,skater,helperSmash/*helperStart,helperEnd,helperLeft,helperRight,helperBurger,helperRapper,helperMuppie,helperSkater*/);
+    scene.add(burger,rapper,gamer,muppie,skater,/*helperSmashhelperStart,helperEnd,helperLeft,helperRight,helperBurger,helperRapper,helperMuppie,helperSkater*/);
     game.level1()
 };
 manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
@@ -29,11 +29,13 @@ manager.onError = function ( url ) {
 	console.log( 'There was an error loading ' + url );
 };
 
-const raycaster = new THREE.Raycaster(new THREE.Vector3(0, -1, 0),new THREE.Vector3(0, 1, 2.8));
+const sprite = new SpriteLoad(manager,'./img/smash.png');
+sprite.sprite.position.set(0.2,2,4);
+sprite.sprite.scale.set(1.5,1.5);
+scene.add(sprite.sprite)
 
 
-/*const arrow = new THREE.ArrowHelper( new THREE.Vector3(0, 1, 0),new THREE.Vector3(0, 1, 2.8), 1, Math.random() * 0xffffff );
-scene.add( arrow );*/
+
 //Ambient Light
 
 var light = new THREE.HemisphereLight(0x404040,0xFFFFFF , .8);
@@ -80,15 +82,15 @@ const game = new Game(burger,rapper,gamer,muppie,skater);
 //Instances
 
 
-const intersects = raycaster.intersectObjects(scene.children);
+
+
+//setInterval(()=>{sprite.visible = !sprite.visible},500)
 
 //Updater
 const tick = function() {
 
 
-	for ( let i = 0; i < intersects.length; i ++ ) {
-		console.log(intersects[i]);
-	}
+
     controls.update()
     delta = clock.getDelta();
     requestAnimationFrame(tick);
@@ -137,30 +139,41 @@ document.querySelector('.smash').addEventListener('click', ()=>{
         game.checkLifes();
     }else{
         if(burger.inIron){
+            sprite.animate()
             console.log('burger hit!!!');
             game.score+=burger.points;
+            burger.setSmash();
             burger.smashed=true;
         }else if(rapper.inIron){
+            sprite.animate()
             console.log('rapper hit!!!');
             game.score+=rapper.points;
+            rapper.setSmash();
             rapper.smashed=true;
         }else if(muppie.inIron){
+            sprite.animate()
             console.log('muppie hit!!!');
             game.score+=muppie.points;
+            muppie.setSmash();
             muppie.smashed = true;
         }else if(gamer.inIron){
+            sprite.animate()
             console.log('gamer hit!!!');
             game.score+=gamer.points;
+            gamer.setSmash();
             gamer.smashed=true;
         }else if(skater.inIron){
+            sprite.animate()
             console.log('skater hit!!!');
             game.score+=skater.points;
+            skater.setSmash();
             skater.smashed=true;
         }
     }
     if(game.over){
         game.gameOverSfx();
         document.querySelector(".gameover").style = 'display:block';
+        document.getElementById("showscore").innerText = game.score;
         document.querySelector(".smash").style = 'display:none';
     }
 })

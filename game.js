@@ -6,6 +6,30 @@ const audioListener = new THREE.AudioListener();
 const gameOverSfx = new THREE.Audio(audioListener);
 
 
+const map = new THREE.TextureLoader().load( './img/smash.png' );
+const material = new THREE.SpriteMaterial( { map: map } );
+export const sprite = new THREE.Sprite( material );
+sprite.position.set(0,2,4);
+sprite.scale.set(1.5,1.5)
+
+export class SpriteLoad{
+    constructor(manager,url){
+        this.manager = manager;
+        this.url = url;
+        this.material = new THREE.SpriteMaterial( { map: this.onCreate() } );
+        this.sprite = new THREE.Sprite(this.material);
+        this.sprite.visible = false;
+    }
+    onCreate(){
+       return new THREE.TextureLoader(this.manager).load(this.url);
+    }
+    animate(){
+        const timeline = gsap.timeline({ease:'linear'})
+        timeline.add(()=>{this.sprite.visible = true},"+=.2")
+        timeline.add(()=>{this.sprite.visible = false},"+=.2")
+    }
+}
+
 export class Game{
     constructor(burger,rapper,gamer,muppie,skater,manager){
         this.burger = burger;
@@ -54,7 +78,7 @@ export class Game{
         timeline.add(()=>this.muppie.animate());
         timeline.add(()=>this.gamer.animate(),"+=2.5");
         timeline.add(()=>this.rapper.animate3(),"+=2");
-        timeline.add(()=>this.burger.animate2(),"+=2");
+        timeline.add(()=>this.burger.animate(),"+=2");
         timeline.add(()=>this.gamer.animate(),"+=2.5");
         timeline.add(()=>this.skater.animate(),"+=2.5");
         //timeline.add(()=>this.level4())

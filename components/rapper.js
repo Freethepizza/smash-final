@@ -33,6 +33,10 @@ export class Rapper extends THREE.Group{
         this.position.set(1.3,0,-.8); 
         this.scale.set(.7,.7,.7);
     }
+    setSmash(){
+        const timeline = gsap.timeline({ease:'linear'});
+        timeline.to(this.scale,{y:.2,duration:.1,ease:'linear'}, "+=.1")
+    }
     animate(){
         const timeline = gsap.timeline({ease:'linear'});
         timeline.to(this.position,{y:1.25,duration:.3,ease:'linear'})
@@ -44,6 +48,7 @@ export class Rapper extends THREE.Group{
         timeline.to(this.position,{y:0,duration:.3,ease:'linear'})
         timeline.to(this.position,{x:1.3,duration:0,ease:'linear'})
         timeline.to(this.rotation,{y:0,duration:0,ease:'linear'})
+        timeline.to(this.scale,{y:.7,duration:0,ease:'linear'})
         timeline.add(()=>this.smashed=false)
     }
     animate2(){
@@ -61,6 +66,7 @@ export class Rapper extends THREE.Group{
         timeline.to(this.position,{y:0,duration:.3,ease:'linear'})
         timeline.to(this.position,{x:1.4,duration:0,ease:'linear'})
         timeline.to(this.rotation,{y:0,duration:0,ease:'linear'})
+        timeline.to(this.scale,{y:.7,duration:0,ease:'linear'})
         timeline.add(()=>this.smashed=false)
     }
     animate3(){
@@ -78,6 +84,7 @@ export class Rapper extends THREE.Group{
         timeline.to(this.position,{y:0,duration:.3,ease:'linear'})
         timeline.to(this.position,{x:1.4,duration:0,ease:'linear'})
         timeline.to(this.rotation,{y:0,duration:0,ease:'linear'})
+        timeline.to(this.scale,{y:.7,duration:0,ease:'linear'})
         timeline.add(()=>this.smashed=false)
     }
 }
