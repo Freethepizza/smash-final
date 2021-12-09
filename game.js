@@ -1,4 +1,4 @@
-import * as THREE from "../dependencies/three.module.js";
+import * as THREE from "./dependencies/three.module.js";
 import gsap from "./dependencies/gsap/index.js"
 import { Burger } from "./components/burger.js";
 

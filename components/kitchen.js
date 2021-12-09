@@ -38,7 +38,6 @@ export class Kitchen{
         this.onCreate();
         this.loadSfx();
         this.rightPlayed = false;
-        this.leftPlayed = false;
     }
     onCreate(){
         new GLTFLoader(this.manager).load(
@@ -80,7 +79,5 @@ export class Kitchen{
             setTimeout(()=>randomSfx(),150);
             this.rightPlayed = false;
         }
-        
-
     }
 }
