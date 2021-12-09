@@ -50,3 +50,37 @@ export const boxSkater = new THREE.Box3();
 boxGamer.setFromCenterAndSize( new THREE.Vector3( 1.2, 1.5, 1.6 ), new THREE.Vector3( 1, .4, 3 ) );
 
 export const helperSkater = new THREE.Box3Helper( boxSkater, 0xffff00 );
+
+export function collisionUpdater(kitchen,burger,rapper,muppie,gamer,skater){
+    if(!boxSmash.intersectsBox(boxBurger) && !boxSmash.intersectsBox(boxRapper) && 
+    !boxSmash.intersectsBox(boxMuppie) &&  !boxSmash.intersectsBox(boxGamer) &&
+    !boxSmash.intersectsBox(boxSkater)){
+        kitchen.isIronEmpty = true;
+        burger.inIron = false;
+        rapper.inIron = false;
+        muppie.inIron = false;
+        gamer.inIron = false;
+        skater.inIron = false;
+    }else{
+        if(boxSmash.intersectsBox(boxBurger)){
+            burger.inIron = true;
+            kitchen.isIronEmpty = false;
+        }
+        else if(boxSmash.intersectsBox(boxRapper)){
+            rapper.inIron = true;
+            kitchen.isIronEmpty = false;
+        }
+        else if(boxSmash.intersectsBox(boxMuppie)){
+            muppie.inIron = true;
+            kitchen.isIronEmpty = false;
+        }
+        else if(boxSmash.intersectsBox(boxGamer)){
+            gamer.inIron = true;
+            kitchen.isIronEmpty = false;
+        }
+        else if(boxSmash.intersectsBox(boxSkater)){
+            skater.inIron = true;
+            kitchen.isIronEmpty = false;
+        }
+    }
+}

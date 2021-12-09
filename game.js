@@ -55,7 +55,7 @@ export class Game{
     }
     level4(){
         const timeline = gsap.timeline({ease:'linear'});
-        timeline.add(()=>this.muppie.animate(),"+=2");
+        timeline.add(()=>this.skater.animate(),"+=2");
         timeline.add(()=>this.rapper.animate(),"+=1.8");
         timeline.add(()=>this.gamer.animate(),"+=1.8");
         timeline.add(()=>this.rapper.animate2(),"+=1.8");

@@ -14,6 +14,7 @@ export class Muppie extends THREE.Group{
         this.isActive = false;
         this.smashed = false;
         this.points = 20;
+        this.inIron = false;
     }
     onCreate(){
         new GLTFLoader(this.manager).load(
@@ -28,8 +29,8 @@ export class Muppie extends THREE.Group{
     }
     updateTransform(){
         this.name = "muppie";
-        this.position.set(1.1,0,-.8); 
-        this.scale.set(.6,.6,.6);
+        this.position.set(1.3,0,-.8); 
+        this.scale.set(.7,.7,.7);
     }
     animate(){
         const timeline = gsap.timeline({ease:'linear'});

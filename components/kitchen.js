@@ -7,9 +7,8 @@ const smashSound00 = new THREE.Audio(audioListener);
 const smashSound01 = new THREE.Audio(audioListener);
 const smashSound02 = new THREE.Audio(audioListener);
 const smashSound03 = new THREE.Audio(audioListener);
-//children[2].children[0].children[0].children[2].children[3].children[0].children[1]
 function randomSfx(){
-    var rnd = Math.floor(Math.random()*4);
+    var rnd = Math.floor(Math.random()*3);
     switch(rnd){
         case 0:
             smashSound00.play();
@@ -18,9 +17,6 @@ function randomSfx(){
             smashSound01.play();
             break;
         case 2:
-            smashSound02.play();
-            break;
-        case 3:
             smashSound03.play();
             break;
     }
@@ -77,13 +73,26 @@ export class Kitchen{
     play(){
         if(!this.rightPlayed){
             rightIron.play().reset();
-            setTimeout(()=>randomSfx(),150);
+            setTimeout(()=>{
+                if(this.isIronEmpty){
+                    smashSound02.play()
+                }else{
+                randomSfx()
+            }
+            },150);
             this.rightPlayed = true;
         }else{
             leftIron.play().reset();
-            setTimeout(()=>randomSfx(),150);
+            setTimeout(()=>{
+                if(this.isIronEmpty){
+                    smashSound02.play()
+                }else{
+                randomSfx()
+            }
+            },150);
             this.rightPlayed = false;
         }
+        
     }        
     
 }
