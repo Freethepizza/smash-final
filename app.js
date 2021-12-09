@@ -53,7 +53,7 @@ scene.add(light3);
 const width = 5;
 const height = width * (window.innerHeight/window.innerWidth);
 const camera = new THREE.OrthographicCamera(width / -2,width / 2,height / 2,height / -2, 1, 100);
-camera.position.set(.2,2,4);
+camera.position.set(.2,3,5);
 camera.lookAt(0,0,0);
 
 //Renderer

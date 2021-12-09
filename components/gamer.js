@@ -37,14 +37,19 @@ export class Gamer extends THREE.Group{
         timeline.to(this.position,{y:1.25,duration:.3,ease:'linear'})
         timeline.to(this.position,{z:2.6,duration:.8,ease:'linear'})
         timeline.to(this.rotation,{y:-1.5,duration:.05,ease:'linear'})
-        timeline.to(this.position,{x:.65,duration:.16,ease:'linear'})
-        timeline.to(this.position,{x:1.3,duration:.1,ease:'linear'}, "+=.4")
+        timeline.to(this.position,{y:2.25,x:-.5,duration:.4,ease:'linear'})
+        timeline.to(this.position,{y:1.25,x:-1.4,duration:.4,ease:'linear'})
+        timeline.to(this.rotation,{y:1.5,duration:.05,ease:'linear'})
+        timeline.to(this.position,{x:1.3,duration:.6,ease:'linear'})
+        timeline.to(this.rotation,{y:-1.5,duration:.05,ease:'linear'})
         timeline.to(this.position,{x:-1.4,duration:.6,ease:'linear'})
         timeline.to(this.rotation,{y:-3.15,duration:.05,ease:'linear'})
         timeline.to(this.position,{z:-.8,duration:.8,ease:'linear'})
         timeline.to(this.position,{y:0,duration:.3,ease:'linear'})
         timeline.to(this.position,{x:1.3,duration:0,ease:'linear'})
         timeline.to(this.rotation,{y:0,duration:0,ease:'linear'})
+        timeline.add(()=>this.smashed=false)
+        //4,4 segundos
         timeline.add(()=>this.smashed=false)
     }
 }

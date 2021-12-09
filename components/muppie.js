@@ -37,13 +37,17 @@ export class Muppie extends THREE.Group{
         timeline.to(this.position,{y:1.25,duration:.3,ease:'linear'})
         timeline.to(this.position,{z:2.6,duration:.8,ease:'linear'})
         timeline.to(this.rotation,{y:-1.5,duration:.05,ease:'linear'})
-        timeline.to(this.position,{x:.65,duration:.16,ease:'linear'})
-        timeline.to(this.position,{x:-1.4,duration:.64,ease:'linear'},"+=.7")
-        timeline.to(this.rotation,{y:-3.15,duration:.1,ease:'linear'})
+        timeline.to(this.position,{x:0.9,duration:.2,ease:'linear'})
+        timeline.to(this.rotation,{y:1.5,duration:.05,ease:'linear'})
+        timeline.to(this.position,{x:1.3,duration:.2,ease:'linear'})
+        timeline.to(this.rotation,{y:-1.5,duration:.05,ease:'linear'})
+        timeline.to(this.position,{x:-1.4,duration:.8,ease:'linear'})
+        timeline.to(this.rotation,{y:-3.15,duration:.05,ease:'linear'})
         timeline.to(this.position,{z:-.8,duration:.8,ease:'linear'})
         timeline.to(this.position,{y:0,duration:.3,ease:'linear'})
         timeline.to(this.position,{x:1.3,duration:0,ease:'linear'})
         timeline.to(this.rotation,{y:0,duration:0,ease:'linear'})
         timeline.add(()=>this.smashed=false)
+        //3,6 secs
     }
 }

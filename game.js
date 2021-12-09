@@ -30,28 +30,34 @@ export class Game{
     }
     level1(){
         const timeline = gsap.timeline({ease:'linear'});
-        timeline.add(()=>this.burger.animate());
-        timeline.add(()=>this.rapper.animate2(),"+=1.8");
-        timeline.add(()=>this.burger.animate(),"+=1.8");
-        timeline.add(()=>this.rapper.animate2(),"+=1.8");
+        timeline.add(()=>this.burger.animate())
+        timeline.add(()=>this.rapper.animate3(),"+=2");
+        timeline.add(()=>this.burger.animate(), "+=2")
+        timeline.add(()=>this.rapper.animate(),"+=2");
+        timeline.add(()=>this.burger.animate(),"+=2");
+        timeline.add(()=>this.rapper.animate2(),"+=2");
         timeline.add(()=>this.level2(), "+=2")
         
     }
     level2(){
         const timeline = gsap.timeline({ease:'linear'});
         timeline.add(()=>this.burger.animate());
-        timeline.add(()=>this.muppie.animate(),"+=1.8");
-        timeline.add(()=>this.rapper.animate2(),"+=1.8");
-        timeline.add(()=>this.burger.animate(),"+=1.8");
+        timeline.add(()=>this.muppie.animate(),"+=2");
+        timeline.add(()=>this.rapper.animate3(),"+=2");
+        timeline.add(()=>this.muppie.animate(),"+=2");
+        timeline.add(()=>this.rapper.animate2(),"+=2");
+        timeline.add(()=>this.gamer.animate(),"+=2.5");
         timeline.add(()=>this.level3(),"+=2")
     }
     level3(){
         const timeline = gsap.timeline({ease:'linear'});
-        timeline.add(()=>this.burger.animate(),"+=1.5");
-        timeline.add(()=>this.muppie.animate(),"+=1.8");
-        timeline.add(()=>this.gamer.animate(),"+=1.8");
-        timeline.add(()=>this.rapper.animate2(),"+=1.8");
-        timeline.add(()=>this.level4())
+        timeline.add(()=>this.muppie.animate());
+        timeline.add(()=>this.gamer.animate(),"+=2.5");
+        timeline.add(()=>this.rapper.animate3(),"+=2");
+        timeline.add(()=>this.burger.animate2(),"+=2");
+        timeline.add(()=>this.gamer.animate(),"+=2.5");
+        timeline.add(()=>this.skater.animate(),"+=2.5");
+        //timeline.add(()=>this.level4())
     }
     level4(){
         const timeline = gsap.timeline({ease:'linear'});
