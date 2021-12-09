@@ -7,7 +7,7 @@ const smashSound00 = new THREE.Audio(audioListener);
 const smashSound01 = new THREE.Audio(audioListener);
 const smashSound02 = new THREE.Audio(audioListener);
 const smashSound03 = new THREE.Audio(audioListener);
-
+//children[2].children[0].children[0].children[2].children[3].children[0].children[1]
 function randomSfx(){
     var rnd = Math.floor(Math.random()*4);
     switch(rnd){
@@ -52,6 +52,10 @@ export class Kitchen{
                 rightIron.setLoop(THREE.LoopOnce);
                 leftIron.setLoop(THREE.LoopOnce);
                 this.scene.add(gltf.scene);
+                /*const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+                const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+                const mesh = new THREE.Mesh( geometry, material );
+                this.scene.add( mesh );*/
             });    
     }
     loadSfx(){
@@ -79,5 +83,6 @@ export class Kitchen{
             setTimeout(()=>randomSfx(),150);
             this.rightPlayed = false;
         }
-    }
+    }        
+    
 }

@@ -18,7 +18,7 @@ manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
 };
 manager.onLoad = function ( ) {
 	console.log( 'Loading complete!');
-    scene.add(burger,rapper,gamer,muppie,skater,/*helperStart,helperEnd,helperSmash,helperLeft,helperRight,helperBurger,helperRapper,helperMuppie,helperSkater*/);
+    scene.add(burger,rapper,gamer,muppie,skater,helperSmash/*helperStart,helperEnd,helperLeft,helperRight,helperBurger,helperRapper,helperMuppie,helperSkater*/);
     game.level1()
 };
 manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
@@ -29,11 +29,11 @@ manager.onError = function ( url ) {
 	console.log( 'There was an error loading ' + url );
 };
 
-const raycaster = new THREE.Raycaster();
-raycaster.set(new THREE.Vector3(0, 1.5, 2.8),new THREE.Vector3(0,1,1));
+const raycaster = new THREE.Raycaster(new THREE.Vector3(0, -1, 0),new THREE.Vector3(0, 1, 2.8));
 
-const arrow = new THREE.ArrowHelper( new THREE.Vector3(0, 1.5, 2.8),new THREE.Vector3(0, 1.5, 2.8), 100, Math.random() * 0xffffff );
-scene.add( arrow );
+
+/*const arrow = new THREE.ArrowHelper( new THREE.Vector3(0, 1, 0),new THREE.Vector3(0, 1, 2.8), 1, Math.random() * 0xffffff );
+scene.add( arrow );*/
 //Ambient Light
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
 scene.add(ambientLight);
@@ -84,7 +84,6 @@ const tick = function() {
 	for ( let i = 0; i < intersects.length; i ++ ) {
 		console.log(intersects[i]);
 	}
-
     controls.update()
     delta = clock.getDelta();
     requestAnimationFrame(tick);
@@ -102,7 +101,7 @@ const tick = function() {
     previousTime = elapsedTime;
 
     if(mixer!==null){
-        mixer.update(delta)
+        mixer.update(delta*2.25)
     }
     
     if(boxBurger.intersectsBox(boxRight)){

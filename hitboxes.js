@@ -11,7 +11,7 @@ boxEnd.setFromCenterAndSize( new THREE.Vector3( -1.41, 1.8, -.5 ), new THREE.Vec
 export const helperEnd = new THREE.Box3Helper( boxEnd, 0xffff00 );
 
 export const boxSmash = new THREE.Box3();
-boxSmash.setFromCenterAndSize( new THREE.Vector3( 0, 1.5, 2.7 ), new THREE.Vector3( .3, .4, .7 ) );
+boxSmash.setFromCenterAndSize( new THREE.Vector3( 0, 1.5, 2.7 ), new THREE.Vector3( 1, .4, .7 ) );
 
 export const helperSmash = new THREE.Box3Helper( boxSmash, 0xffff00 );
 
