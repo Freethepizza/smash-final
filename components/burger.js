@@ -23,7 +23,6 @@ export class Burger extends THREE.Group{
                 this.updateTransform();
                 this.add(gltf.scene);
                 burgerMixer = new THREE.AnimationMixer(gltf.scene);
-                console.log(gltf.animations[0])
                 walk = burgerMixer.clipAction(gltf.animations[0]);
                 burgerMixer.timeScale = 1;
                 walk.play()

@@ -8,7 +8,7 @@ import { Muppie, muppieMixer } from "./components/muppie.js";
 import { Skater, skaterMixer } from "./components/skater.js";
 import { Chef } from "./components/chef.js";
 import { Game, SpriteLoad } from "./game.js";
-import { collisionUpdater, helperStart, helperEnd, helperSmash, helperLeft, helperRight, helperBurger,helperRapper,helperMuppie,helperGamer,helperSkater,boxBurger,boxRapper,boxMuppie,boxGamer,boxSkater,boxRight,boxLeft,boxSmash } from "./hitboxes.js";
+import { collisionUpdater, boxBurger,boxRapper,boxMuppie,boxGamer,boxSkater,boxRight,boxLeft,boxSmash } from "./hitboxes.js";
 //Scene
 const scene = new THREE.Scene();
 //Load Manager
@@ -77,7 +77,6 @@ const rapper = new Rapper(manager);
 const gamer = new Gamer(manager);
 const muppie = new Muppie(manager);
 const skater = new Skater(manager);
-const chef = new Chef(manager);
 const game = new Game(burger,rapper,gamer,muppie,skater);
 //Instances
 

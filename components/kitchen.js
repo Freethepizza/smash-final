@@ -49,10 +49,6 @@ export class Kitchen{
                 rightIron.setLoop(THREE.LoopOnce);
                 leftIron.setLoop(THREE.LoopOnce);
                 this.scene.add(gltf.scene);
-                /*const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-                const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-                const mesh = new THREE.Mesh( geometry, material );
-                this.scene.add( mesh );*/
             });    
     }
     loadSfx(){

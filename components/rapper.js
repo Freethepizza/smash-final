@@ -23,7 +23,6 @@ export class Rapper extends THREE.Group{
                 this.updateTransform();
                 this.add(gltf.scene);
                 rapperMixer = new THREE.AnimationMixer(gltf.scene);
-                console.log(gltf.animations[0])
                 walk = rapperMixer.clipAction(gltf.animations[0]);
                 walk.play()
             });
